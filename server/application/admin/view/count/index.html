@@ -1,0 +1,39 @@
+{extend name="template/base" /}
+{block name="title"}订单统计{/block}
+{block name="content"}
+<div class="page-container">
+    <div class="view-body think-editor-content">
+        <!--  <p class="c-red">以下为静态展示内容</p>-->
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-6">
+                <table class="table table-border table-bordered table-bg">
+                    <thead>
+                    <tr>
+                        <th colspan="7" scope="col">统计</th>
+                    </tr>
+                    <tr class="text-c">
+                        <th>总会员数</th>
+                        <th>总定餐数</th>
+                        <th>总剩余餐数</th>
+                        <th>总已用餐数</th>
+                        <th>总在用餐数</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr class="text-c">
+                        <td>{$user}</td>
+                        <td>{$total_num}</td>
+                        <td>{$rest_num}</td>
+                        <td>{$use_num}</td>
+                        <td>{$order_num}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

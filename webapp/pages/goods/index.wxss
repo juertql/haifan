@@ -1,0 +1,269 @@
+/* pages/calendar/calendar.wxss */
+@import "../common/font.wxss";
+page{
+     /*background-color: #44496a;*/
+}
+.calendar{
+    height: 100%;
+   
+}
+.foods-back{
+    height: 300rpx;
+    width:100%
+}
+.calendar {
+  margin: 0 25rpx;
+  position: relative;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  padding-left: 38%;
+  margin-bottom: 20rpx;
+  position: absolute;
+  top: 220rpx;
+  z-index: 100;
+}
+
+.calendar-header image {
+  width: 56rpx;
+  height: 56rpx;
+}
+
+.picker {
+  padding: 0 20rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+ /* color: #f9662c;*/
+  /*margin-bottom: 20rpx*/
+}
+
+.week {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  min-height: 70rpx;
+  line-height: 70rpx;
+  background-color: #e8f2fe
+}
+
+.week-item {
+  box-sizing: border-box;
+  text-align: center;
+  width: 100rpx;
+  font-size: 12px;
+  /*border: 2rpx solid #eee;*/
+}
+
+.month {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 10rpx;
+  box-shadow: 0px 10px 10px #d4d4d4;
+  /*padding-bottom: 5rpx;*/
+  border-bottom-right-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
+}
+
+.month-item {
+  box-sizing: border-box;
+  text-align: center;
+  width: 100rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 2rpx solid #eee;
+  font-size: 12px;
+  /*background: #fff;*/
+  /*border-radius: 50%;*/
+}
+/** 当天 */
+.toDay{
+    color: #fff;
+     background-color: #FF3030;
+}
+
+.agoDay{
+  color:#fdfbfc;
+   background-color: #e0dfdd
+}
+.two-day{
+    color: #fff;
+     background-color: #97c7f8; 
+}
+.day-box{
+    position: relative;
+}
+.month .click-box{
+    /*background-color: #97c7f8;*/
+    color: red
+    
+}
+.wanc{
+    position: absolute;
+    top: 0rpx;
+    right: 1rpx;
+    font-size: 18px;
+    color: #051d35
+}
+
+
+/** 详情  */
+.foods-type{
+    width: 160rpx;
+    height: 170rpx;
+    margin-right: 20rpx;
+    margin-top: 30rpx;
+}
+.foods-type-loading{
+    width: 200rpx;
+    height: 150rpx;
+    margin-right: 20rpx;
+    margin-top: 30rpx;
+}
+.no-order-not{
+ width: 100%;
+ height: 100rpx;
+ padding-top: 40rpx;
+ text-align: center;
+ color: #333333;
+}
+.no-order-can{
+ width: 100%;
+ height: 60rpx;
+ padding-top: 30rpx;
+ text-align: center;
+}
+.toAdd{
+  color: #f9662c;
+  font-size: 20px;   
+}
+.no-left-text{
+    line-height: 24px
+}
+.yes-order-can{
+ width: 100%;
+ height: 200rpx;
+ margin-top:10rpx
+ 
+}
+.loading-order{  
+ width: 100%;
+ height: 200rpx;
+ margin-top:10rpx
+}
+.yes-order-not{
+ width: 100%;
+ height: 200rpx;
+ margin-top:10rpx
+}
+.detail-inner{
+    width: 55%;
+    padding-top: 30rpx;
+}
+.detail-inner-loading{
+    width: 35%;
+    padding-top: 30rpx;
+}
+.edit-botton{
+    /*border: 1px solid #2e4659;*/
+    width: 90rpx;
+    height: 50rpx;
+    margin-top: 40rpx;
+    background-color: #051d35;
+    color: #fff;
+    line-height: 50rpx;
+    text-align: center;
+    border-radius: 10rpx;
+    
+}
+.success{
+    width: 120rpx;
+    height: 60rpx;
+    margin-top: 80rpx;
+    background-color: #051d35;
+    color: #fff;
+    line-height: 60rpx;
+    text-align: center  ;
+    font-size: 14px; 
+    border-radius: 5rpx;
+}
+.success-loading{
+    width: 140rpx;
+    height: 60rpx;
+    margin-top: 80rpx;
+    background-color: #051d35;
+    color: #fff;
+    line-height: 60rpx;
+    text-align: center  ;
+    font-size: 14px; 
+    border-radius: 5rpx;
+}
+.cacel-botton{
+     width: 90rpx;
+     height: 50rpx;
+     margin-top: 20rpx;
+     background-color: #bebdbd;
+    color: #fff;
+     line-height: 50rpx;
+      text-align: center;
+      border-radius: 10rpx;
+}
+.address{
+    font-size: 13px;
+    color: #4f4f4f;
+    margin: 10rpx 0;
+}
+.type-name{
+    color: #f9662c
+}
+.time{
+   font-size: 13px;
+    color: #4f4f4f; 
+}
+.all{
+    /*background-color: #44496a;*/
+    margin-bottom: 20rpx;
+}
+.edit-order{
+    margin-right: 20rpx;
+    margin-top: 20rpx;
+    font-size:14px
+}
+/** banner */
+.swiper{
+    width:100%;
+    margin:0rpx 0;
+}
+.swiper image{
+    display: inline;
+}
+
+
+.bottom-title{
+    height: 100rpx;
+    border-bottom: 1px solid #e1e0de
+}
+.goods-title{
+    color: #6d6d6d;
+    font-size: 16px;
+    line-height: 100rpx;
+}
+.goods-detail{
+    color: #666666;
+    font-size: 18px;
+    line-height: 100rpx
+}
+.cant-edit-title{
+     padding-top: 20rpx;
+    font-size: 14px;
+    color: #333333;
+}
+.cant-edit{
+    padding-top: 60rpx;
+    font-size: 14px;
+    color: #dc2611;
+}

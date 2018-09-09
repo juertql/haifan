@@ -1,0 +1,37 @@
+/* pages/login/index.wxss */
+page{
+     /*background-color: #44496a*/
+}
+.main{
+ padding:  100rpx 60rpx;  
+}
+.input-login{
+    height: 80rpx;
+    padding-left: 30rpx;
+    /*background-color: #fffdfe;*/
+    border: 1px solid #dee2e3;
+    margin-bottom: 50rpx;
+    padding-top: 20rpx
+}
+.btn-area{
+  margin-top: 80rpx;
+}
+button{
+background-color: #051d35;
+ color: #fff;
+ margin-top: 100rpx
+}
+.login-img{
+    margin-left: 40%;
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 160rpx;
+    margin-bottom: 60rpx;
+}
+.goout{
+   margin-top: 50rpx;
+   margin-left: 25rpx;
+   line-height: 20rpx;
+   font-size: 16px;
+   color: #584F60;
+}

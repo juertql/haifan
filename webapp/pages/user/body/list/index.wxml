@@ -1,0 +1,26 @@
+<view class='main'>
+      <view class='main-header'>
+        <view class='header-title font-size-16 cg-left'>
+          身体数据
+        </view>
+        <view class='cg-left  font-size-16 header-info'>
+        历史数据
+        </view>
+      </view>
+      <!-- list -->
+      <view class='data-list'>
+
+        <view wx:for='{{data}}' class='list-inner'>
+        <navigator url='../detail/index?ym={{item.ym}}'>
+         <view class='iconfont font-size-16 zx icon-tz cg-left'></view>
+           <view class='list-left cg-left font-size-16'>
+            {{item.ym}}
+           </view>
+           <view class='list-right cg-right font-size-16'>
+            
+            </view>
+           </navigator>
+        </view>
+
+        </view>
+        </view>

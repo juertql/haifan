@@ -1,0 +1,38 @@
+/** banner */
+.swiper{
+    width:100%;
+    margin:0rpx 0;
+    height: 400rpx;
+}
+swiper{
+    height: 400rpx
+}
+.swiper .image{
+    /*display: inline;*/
+    width: 100%;
+    height: 400rpx
+}
+.goods-inner{
+    height: 360rpx;
+    position: relative;
+}
+.goods-list .goods-img{
+    width: 100%;
+    height: 360rpx
+}
+.goods-text{
+    position: absolute;
+    bottom: 80rpx;
+    left: 65%;
+    z-index: 500;
+    color: #fff;
+    background-color:rgba(0,0,0,0.5);
+    height: 62rpx;
+    line-height: 62rpx;
+    border-radius: 30rpx;
+    text-align: center;
+    width: 200rpx;
+    font-size: 16px;
+    letter-spacing: 0.2rpx;
+    font-weight: bold;
+}

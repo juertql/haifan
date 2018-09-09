@@ -1,0 +1,21 @@
+<!--pages/login/index.wxml-->
+
+<view class='main'>
+  <image src='../../img/logo.png' class='login-img' />
+<form bindsubmit="formSubmit" bindreset="formReset">
+<view class='input-login'>
+    <input type="number" class='input' name="mobile" placeholder="手机号" />
+</view>
+<view class='input-login'>
+    <input type="text" class='input' password='true' name="password" placeholder="密码" />
+</view>
+ <view class="btn-area">
+      <button formType="submit">登录</button>
+    </view>
+  </form>
+  <navigator open-type='switchTab' url='/pages/index/index'>
+  <view class='goout'>
+     回到首页
+  </view>
+  </navigator>
+  </view>

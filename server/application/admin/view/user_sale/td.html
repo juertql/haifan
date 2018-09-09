@@ -1,0 +1,6 @@
+<td><input type="checkbox" {if condition="$vo.sale_id eq $sale_id"}checked{/if}  name="id[]" value="{$vo.id}">
+     </td>
+<td>{$vo.id}</td>
+<td>{$vo.name|high_light=$Request.param.name}</td>
+<td>{$vo.mobile}</td>
+<td>{$vo.sale_id}</td>

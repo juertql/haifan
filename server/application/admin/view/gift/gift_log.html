@@ -1,0 +1,100 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <form class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+        <div class="select-box" style="width:250px">
+            <select name="order_status" class="select">
+                <option value="1">未发送</option>
+                <option value="2">已发送</option>
+                <option value="3">已取消</option>
+            </select>
+        </div>
+        <input type="text" class="input-text Wdate" style="width:140px" placeholder="开始时间" name="start_time" value="{$Request.param.start_time}" {literal} onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" {/literal} >-
+        -<input type="text" class="input-text Wdate" style="width:140px" placeholder="结束时间" name="end_time" value="{$Request.param.end_time}" {literal} onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" {/literal} >
+        <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+    </form>
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+
+        </span>
+        <span class="r pt-5 pr-5">
+            共有数据 ：<strong>{$count ?? '0'}</strong> 条
+        </span>
+    </div>
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            <th width="25"><input type="checkbox"></th>
+            <th width="">ID</th>
+            <th width="">会员名字</th>
+            <th width="">礼物名字</th>
+            <th width="">是否发送</th>
+            <th width="">中奖时间</th>
+            <th width="70">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+            <td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+            <td>{$vo.id}</td>
+            <td>{$vo.user_id|get_user_name}</td>
+            <td>{$vo.gift_id|get_gift_name}</td>
+            <td>
+                {switch name='vo.order_status'}
+                {case value='1'}
+                  未发送
+                {/case}
+                {case value='2'}
+                  已发送
+                {/case}
+                {/switch}
+
+            </td>
+            <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+            <td class="f-14">
+                {if condition='$vo.order_status eq 1'}
+                <a title="配送" href="javascript:;" onclick="toChange('{$vo.id}',2)" class="label radius ml-5 label-primary">发送礼品</a>
+                <a title="取消" href="javascript:;" onclick="toChange('{$vo.id}',3)" class="label radius ml-5 label-primary">取消礼品</a>
+                {/if}
+
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="page-bootstrap">{$page ?? ''}</div>
+</div>
+{/block}
+{block name="script"}
+<script src="__LIB__/lightbox2/js/lightbox.min.js"></script>
+<script type="text/javascript" src="__LIB__/My97DatePicker/WdatePicker.js"></script>
+<script>
+    //配送
+    var toChange = function(id,status){
+        var id = id;
+        $.ajax({
+            url:"{:url('changeStatus')}",
+            type:"post",
+            data:{
+                id: id,
+                status:status
+            },
+            //async: false,
+            success:function(re){console.log(re)
+                if(re.code == 200){
+                    layer.msg(re.msg);
+                    window.location.reload()
+                }
+                else{
+                    layer.msg(re.msg);
+                }
+            }
+        });
+    }
+    $(function () {
+        $("[name='order_status']").find("[value='{$Request.param.order_status}']").attr("selected", true);
+    })
+</script>
+{/block}
+

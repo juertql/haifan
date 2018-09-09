@@ -1,0 +1,125 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <form class="form form-horizontal" id="form" method="post" action="{:\\think\\Request::instance()->baseUrl()}">
+        <input type="hidden" name="id" value="{$vo.id ?? ''}">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>名字：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="名字" name="name" value="{$vo.name ?? ''}"  datatype="*" nullmsg="请填写名字">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>规格：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="规格" name="spec" value="{$vo.spec ?? ''}"  datatype="*" nullmsg="请填写规格">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>美图：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input name="img" type="text" value="{$vo.img ?? ''}" class="input-text" id="upload" placeholder="请点击后面的上传按钮" datatype="/(.jpg)|(.png)$/" nullmsg="请填写图片url" style="width: 70%">
+                <button type="button" class="btn btn-primary radius" onclick="layer_open('文件上传','{:\\think\\Url::build(\'Upload/index\', [\'id\' => \'upload\'])}')">上传</button>
+                <a onclick="$(this).attr('href', '{$Think.config.__host_name__}'+$('#upload').val())" type="button" class="btn btn-success radius" data-lightbox="preview">预览</a>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>价格：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="价格" name="price" value="{$vo.price ?? ''}"  datatype="*" nullmsg="请填写价格">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">说明：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="说明" name="title" value="{$vo.title ?? ''}" >
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">详情：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <script id="editor" type="text/plain" name="content" style="height:400px;width:600px"></script>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">首页是否显示：</label>
+            <div class="formControls col-xs-6 col-sm-6 skin-minimal">
+                <div class="radio-box">
+                    <input type="radio" name="is_show" id="show-1" value="1">
+                    <label for="status-1">显示</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" name="is_show" id="show-0" value="0">
+                    <label for="status-0">禁用</label>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">状态：</label>
+            <div class="formControls col-xs-6 col-sm-6 skin-minimal">
+                <div class="radio-box">
+                    <input type="radio" name="status" id="status-1" value="1">
+                    <label for="status-1">启用</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" name="status" id="status-0" value="0">
+                    <label for="status-0">禁用</label>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary radius">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+                <button type="button" class="btn btn-default radius ml-20" onClick="layer_close();">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__STATIC__/ue/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__STATIC__/ue/ueditor.all.min.js"> </script>
+<script>
+    var ue = UE.getEditor('editor');
+    ue.ready(function(){
+        if($("#id").val() != ''){
+            ue.setContent('{$vo.content ?? ""}');
+        }
+    })
+
+    $("#form").submit(function(){
+        UE.getEditor('editor');
+    })
+</script>
+<script>
+    $(function () {
+        $("[name='status'][value='{$vo.status ?? '1'}']").prop("checked", true);
+        $("[name='is_show'][value='{$vo.is_show ?? '1'}']").prop("checked", true);
+
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+        $("#form").Validform({
+            tiptype: 2,
+            ajaxPost: true,
+            showAllError: true,
+            callback: function (ret){
+                ajax_progress(ret);
+            }
+        });
+    })
+</script>
+{/block}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="./static/admin/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="./static/admin/lib/layer/2.4/layer.js"></script>
+<script>
+    var api = 'http://127.0.0.1/tpAdmin-master/tpAdmin-master/public/api.php'
+    $(function(){
+    $.ajax({
+        url:api+"/index/getWebValue",
+        type:'get',
+        data:{name:'web_company_info'},
+        dataType:'json',
+        success:function(re){
+            console.log(re)
+        }
+
+
+    }
+    )})
+</script>
+</html>

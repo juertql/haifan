@@ -1,0 +1,16 @@
+<!--pages/goods/goodsdetail/index.wxml-->
+<view class="imgtp">
+    <image src="{{detail.img}}"></image>
+  </view>
+  <!--<view class="shopname">{{detail.name}}--{{detail.spec}}</view> 
+  <view class="shopmay">{{detail.create_time}}</view>
+  <view class="shopModel">
+    <text class="textModel">{{detail.title}}</text>
+  </view>
+  <view class="bc_hr"></view>-->
+   <!-- 简介 -->
+      <view class="swiperite" >   
+          <import src="../../../wxParse/wxParse.wxml"/> 
+          <template is="wxParse" data="{{wxParseData:content.nodes}}"/>    
+      </view>  
+

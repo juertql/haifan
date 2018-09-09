@@ -1,0 +1,36 @@
+/* pages/user/gift/index.wxss */
+page{
+    background-color: #eee
+}
+.content{
+  padding-top: 30rpx;
+}
+.list{
+    padding: 20rpx 35rpx;
+   border-bottom: 1px solid #fff;
+   height: 100rpx;
+   background-color: #eee
+}
+.gift-left{
+  width: 55%
+}
+.gift-name{
+ font-size: 18px;
+ margin-bottom: 5rpx;
+ color: #9a9a9a
+}
+.gift-time{
+    font-size: 14px;
+    color: #333333
+}
+.gift-right{
+    width: 40%;
+    text-align: right;
+    padding-top:25rpx;
+
+}
+.no-list{
+    text-align: center;
+    margin-top: 50rpx;
+    color: #da501d
+}

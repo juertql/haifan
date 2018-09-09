@@ -1,0 +1,76 @@
+<view class='content'>
+<view class='top-user'>
+<image src='{{userInfo.avatarUrl}}' class='login-img' />
+<view class='name'>
+  {{userInfo.nickName}}
+  </view>
+  <!-- 餐数 -->
+  <view class='goods-info'>
+      <view class='goods-list-inner cg-left'>
+         <view class='goods-title cg-left'>
+           总天数:
+         </view>
+         <view class='goods-num cg-left'>{{total_num}}</view>
+      </view>
+      <view class='goods-list-inner cg-left'>
+         <view class='goods-title cg-left'>
+           可用:
+         </view>
+         <view class='goods-num cg-left'>{{rest_num}}</view>
+      </view>
+       <view class='goods-list-inner cg-left'>
+         <view class='goods-title cg-left'>
+           在用:
+         </view>
+         <view class='goods-num cg-left'>{{order_num}}</view>
+      </view>
+      <view class='goods-list-inner cg-left'>
+         <view class='goods-title cg-left'>
+          已用
+         </view>
+         <view class='goods-num cg-left'>{{use_num}}</view>
+      </view>
+  </view>
+<!-- 血量 
+    <view class='count-num'>
+      <view class='rest-num'>
+      <view class='shengm'>血量：{{rest_num}}/{{total_num}}</view>
+       <progress percent="{{total_num == 0 ? 0 : rest_num/total_num*100 }}" active='true' show-info='' activeColor='red' backgroundColor='#bebdbd' stroke-width="8" />      
+      </view>
+      <view class='rest-num'>
+      <view class='shengm'>体力：{{use_num}}/{{total_num}}</view>
+       <progress percent="{{total_num == 0 ? 0 : use_num/total_num*100 }}" active='true' show-info='' activeColor='#2cadfa' backgroundColor='#bebdbd' stroke-width="8" />  
+      </view>
+    </view>-->
+    </view>
+<!-- 底部 -->
+<view class="line">
+   <view class="list-inner cg-left" wx:for="{{nav}}" wx:key="{{item.id}}">
+   
+     <navigator url="{{item.url}}" class="item" wx:if='{{item.id < 4}}'>
+    
+        <view class='iconfont {{item.icon}} icon'></view>
+        <view class="text">{{item.name}}</view>
+        
+     </navigator>
+    
+    
+     <view class='item' wx:if='{{item.id == 4}}' bindtap='loginout'>
+        <view class='iconfont {{item.icon}} icon'></view>
+        <view class="text">{{item.name}}</view>
+      </view>  
+    </view>
+</view>
+<view class='remind-order' wx:if="{{isRemindOrder}}"> 在用天数剩余{{order_num}}天，请及时订餐！ </view>
+<!-- 取消 -->
+<modal 
+      title="退出登录"
+      hidden="{{hiddenOutModal}}"
+      confirm-text="确定"
+      cancel-text="在想想"
+      data-value="1"
+      bindconfirm="listenerOutConfirm"
+      bindcancel="listenerCancel" >
+      确定退出登录?
+    </modal>
+</view>

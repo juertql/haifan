@@ -1,0 +1,120 @@
+/* pages/user/index.wxss */
+@import "../common/font.wxss";
+page{
+    height: 100%;
+}
+.content{
+    width: 100%;
+    height: 100%;
+    /*background-color: #eee*/
+}
+.top-user{
+    /*background-color: #051d35;*/
+     border-bottom:15rpx solid #f2f2f2;
+     background-image: url('https://hifan.chuxinbuer.com/haifan/public/tmp/back4.jpg');
+      background-repeat: no-repeat;
+    background-size: 100%;
+}
+.login-img{
+    margin-left: 40%;
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 160rpx;
+    margin-top:40rpx;
+    /*margin-top: 20rpx;*/
+}
+/** 血量  */
+.count-num{
+    margin: 0rpx 0;
+    color:#fff;
+    font-size: 12px;
+    margin-bottom: 10rpx
+}
+.cg-left{
+    float: left;
+}
+.cg-right{
+    float: right;
+}
+.shengm{
+    /*color: #fff*/
+}
+.name{
+    /*margin-top: 10rpx;*/
+    text-align: center;
+    color: #e76a47;
+    line-height: 50rpx;
+    font-size: 18px
+}
+/*个人中心类目*/
+ .line{
+    width:100%;
+    padding:20rpx 0;
+    margin-top: 40rpx;
+    height:450rpx;
+
+}
+.list-inner{
+    width: 50%;
+    height: 200rpx;
+    margin-top:50rpx;
+
+}
+.icon{
+    font-size: 46px;
+    /*margin-left:40%;*/
+    text-align: center;
+}
+.line .item image{
+    height:70rpx;
+    width:70rpx;
+}
+.text{
+    width:100%;
+    display: block;
+    font-size:14px;
+    /*color:#fff;*/
+    text-align:center;
+   
+}
+.liwu{
+   color: #f85959;
+   font-size: 46px;
+}
+.top{
+   color: #e68422
+}
+.xiugai{
+    color: #fd9e1b
+}
+.tuichu{
+    /*color: #fcfcfc*/
+}
+
+.goods-info{
+    margin-left: 10%;
+    text-align: center;
+    margin-top: 30rpx;
+    height: 50rpx;
+    margin-bottom: 25rpx
+}
+.goods-list-inner{
+    margin-right: 50rpx;
+}
+.goods-title{
+    color: #051d35;
+    font-size: 14px;
+}
+.goods-num{
+    margin-left: 10rpx;
+    font-size: 14px;
+    color: #fff;
+}
+.remind-order{
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+    position:fixed;
+    bottom:1%;
+    color: rgb(204, 9, 172);
+}

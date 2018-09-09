@@ -1,0 +1,21 @@
+<form id="form" class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+    <input type="text" class="input-text" style="width:250px" placeholder="会员名" name="name" value="{$Request.param.name}" >
+    <div class="select-box" style="width:250px">
+        <select name="status" class="select">
+            <option value="">选择状态</option>
+            <option value="1">启用</option>
+            <option value="0">禁用</option>
+        </select>
+    </div>
+    {if condition='$Think.session.is_sale eq 0'}
+    <div class="select-box" style="width:250px">
+        <select name="sale_id" class="select">
+            <option  value="">选择销售</option>
+            {volist name='sale' id='item'}
+            <option value="{$item.id}">{$item.realname}</option>
+            {/volist}
+        </select>
+    </div>
+    {/if}
+    <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+</form>

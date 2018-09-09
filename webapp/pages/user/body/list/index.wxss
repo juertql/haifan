@@ -1,0 +1,36 @@
+.main{
+    padding: 0 20rpx;
+}
+.main-header{
+    width: 100%;
+    height: 120rpx;
+    
+    line-height: 120rpx
+}
+.header-title{
+    margin-right: 20rpx;
+    color: #000;
+}
+.header-info{
+  /*color: #eee*/
+    color: #D2D2D2;
+}
+
+/*  列表 */
+.data-list{
+    color: #584F60;
+}
+.list-inner{
+    height: 110rpx;
+    border-bottom: 1px solid #eee;
+    line-height: 110rpx;
+}
+.zx{
+    font-size: 18px;
+    margin-right: 20rpx;
+}
+.edit{
+   color: #584F60;
+   font-size: 24px  ;
+   margin-left: 20rpx
+}

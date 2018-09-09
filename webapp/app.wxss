@@ -1,0 +1,15 @@
+page{
+    height: 100%
+}
+.cg-left{
+    float: left
+}
+.cg-right{
+    float: right
+    }
+    .flexbox{
+  display:-webkit-flex;
+  -webkit-justify-content:center;
+  -webkit-flex-wrap:wrap;
+  -webkit-align-items:center;
+}

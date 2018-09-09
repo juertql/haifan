@@ -1,0 +1,19 @@
+<td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+<td>{$vo.id}</td>
+<td>{$vo.name|high_light=$Request.param.name}</td>
+<td>{$vo.mobile}</td>
+<td>{$vo.sale_id|get_sale}</td>
+<td>{$vo.default_goods_id|get_goods_type}</td>
+<td>
+    <a title="查看详情" onclick="layer_open('订餐详情','{:url(\'Goods/index\')}?user_id={$vo.id}')" type="button" class="btn btn-success radius" data-lightbox="preview">查看订餐</a>
+</td>
+<td>
+{$vo.id|getUserOrderCount}
+</td>
+<td>
+    <a title="查看详情" onclick="layer_open('身体数据','{:url(\'UserBody/index\')}?user_id={$vo.id}')" type="button" class="btn btn-warning radius" data-lightbox="preview">查看详情</a>
+</td>
+<td>{$vo.address}</td>
+<td>{$vo.remark}</td>
+<td>{$vo.special}</td>
+<td>{$vo.status|get_status}</td>

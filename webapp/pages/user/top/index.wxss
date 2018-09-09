@@ -1,0 +1,72 @@
+/* pages/user/top/index.wxss */
+@import "../../common/font.wxss";
+page{
+    background-color: #eee
+}
+.bc_white{
+  width:92%;
+  height:50rpx;
+  padding:8rpx 4%;
+  font-size:30rpx;
+  font-family: "微软雅黑";
+  margin-top:12rpx;
+  color:#999;
+}
+.swiper-tab-list{
+  width:30%;
+  height:60rpx;
+  float: left;
+  margin-left:10%;
+  text-align: center;
+  font-size: 18px;
+}
+swiper{
+  width:100%;
+  height:5720rpx;
+}
+.up{
+  border-bottom:2rpx solid #da501d;
+}
+.user-inner{
+    margin: 40rpx 0;
+}
+.user-list{
+   padding: 20rpx 30rpx;
+    border-bottom: 0.5px solid #fff; 
+    height: 80rpx;
+     background-color: #eee
+}
+.user-index{
+    width: 70rpx;
+    color: #9a9a9a;
+    font-size: 18px;
+     line-height: 80rpx;
+}
+.icon{
+    font-size: 22px;
+    color: #e68422;
+}
+.user-info{
+    width: 50%;
+    height: 60rpx;
+}
+.user-img{
+  border-radius: 80rpx;
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+}
+.user-name{
+  line-height: 80rpx;
+   color: #9a9a9a;
+}
+.user-num{
+    font-size: 18px;
+     color: #9a9a9a;
+     line-height: 80rpx;
+}
+.no-list{
+    text-align: center;
+    margin-top: 50rpx;
+    color: #da501d
+}

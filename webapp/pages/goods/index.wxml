@@ -1,0 +1,180 @@
+<!--pages/calendar/calendar.wxml-->
+
+
+<view class="calendar">
+<!--banner-->
+  <view class="swiper">
+      <swiper indicator-dots="{{indicatorDots}}" vertical="{{vertical}}"
+              autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+          <block wx:for-items="{{goods_type}}" wx:key="item.id">
+          <!--<navigator url='/pages/goods/goodsdetail/index?id={{item.id}}'>-->
+              <swiper-item>
+                <block wx:if="{{item}}">
+                  <image src="{{item.img}}"  mode="aspectFill"/>
+                </block>
+                <block wx:else>
+                  <image src="../../images/default_pic.png" mode="aspectFill"></image>
+                </block>
+              </swiper-item>
+              <!--</navigator>-->
+          </block>
+      </swiper>
+  </view>
+
+  <view class="calendar-header">
+    <!--<image src="/img/date-left.png" bindtap="bindLastMonth"/>-->
+    <picker value="{{date}}"
+          bindchange="bindPickerChange"
+          fields="month"
+          mode="date"
+          start="1990-01-01"
+          end="2030-12-31">
+      <view class="picker">{{dateCN}}</view>
+    </picker>
+    <!--<image src="/img/date-right.png" bindtap="bindNextMonth"/>-->
+  </view>
+
+  <view class="week">
+    <view wx:for="{{week}}" wx:key="{{item}}" class="week-item">
+      <text>{{item}}</text>
+    </view>
+  </view>
+
+  <view class="month">
+    <view 
+    wx:for="{{months}}" 
+    wx:key="{{item}}"     
+    >       
+        <view wx:if="{{item.value < toDayYMD}}" class='day-box {{todo == item.value ?"click-box" : ""}}'>
+        <view wx:if="{{item.order_status == 2}}" class='iconfont icon-wancheng1 wanc'>
+          </view>
+          <view class="month-item agoDay" bindtap="click"  data-item="{{item}}"  >
+             {{item.num}}
+          </view>
+        </view>
+        <view wx:elif="{{item.value == toDayYMD}}" class='day-box {{todo == item.value ?"click-box" : ""}}'>
+          <view wx:if="{{item.order_status == 1}}" class='iconfont icon-xuanzhong1 wanc'>
+          </view>
+          <view wx:if="{{item.order_status == 2}}" class='iconfont icon-wancheng1 wanc'>
+          </view>
+          <view wx:if="{{item.order_status == 2}}" class='iconfont icon-wancheng1 wanc'>
+          </view>
+          <view class="month-item toDay" bindtap="click"  data-item="{{item}}"  >{{item.num}}</view>
+        </view>
+        <view wx:elif="{{item.value <= (toDayYMD + cantEdit)}}" class='day-box {{todo == item.value ?"click-box" : ""}}'>
+          <view wx:if="{{item.order_status == 1}}" class='iconfont icon-xuanzhong1 wanc'>
+          </view>
+          <view class="month-item two-day" bindtap="click"  data-item="{{item}}"  >{{item.num}}</view>
+        </view>
+        <view wx:else class='day-box {{todo == item.value ?"click-box" : ""}}'>
+          <view wx:if="{{item.order_status == 1}}" class='iconfont icon-xuanzhong1 wanc'>
+          </view>
+          <view class="month-item" bindtap="click"  data-item="{{item}}" >{{item.num}}</view>
+        </view>
+    </view>
+  </view>
+<!-- 取消 -->
+<modal 
+      title="取消送餐"
+      hidden="{{hiddenAddModal}}"
+      confirm-text="确定"
+      cancel-text="在想想"
+      data-value="{{sn}}"
+      bindconfirm="listenerorderConfirm"
+      bindcancel="listenerCancel" >
+      确定取消送餐?
+    </modal>
+    <view class='all'>
+      <view class='bottom-title'>
+        <view class='cg-left goods-title'>
+          近期餐品
+        </view>
+        <view class='cg-right goods-detail'>
+        >
+        </view>
+      </view>
+    <!-- 底部 -->
+     <!-- 不可选 -->
+    <view class='no-order-not' wx:if='{{showIndex === 6}}'>
+        遗憾，今天不能选餐哦
+    </view>
+    <!-- 未选餐 不可选 -->
+    <view class='no-order-not' wx:if='{{showIndex === 0}}'>
+        遗憾，今天没有选餐哦
+    </view>
+     <!-- 未选餐 可选 -->
+     <view class='no-order-can'  wx:if='{{showIndex === 1}}'>
+        <view class='no-left-text'>
+          <span class='toAdd' bindtap='addOrder' >
+          点我选餐
+        </span>
+        </view>
+    </view>
+    <!-- 已完成 -->
+ <view class='yes-order-not'  wx:if='{{showIndex === 2}}'>
+ <!--<navigator url='/pages/goods/goodsdetail/index?id={{orderDetail.goods_type_id}}'>-->
+        <view class='cg-left'>
+           <image src='{{orderDetail.type_img}}' class='foods-type' />
+        </view>
+        <view class='cg-left detail-inner' >
+            <view class='type-name'>
+                {{orderDetail.type_name}} 
+            </view> 
+           <view class='address'>
+               {{orderDetail.address}} 
+            </view>
+            <view class='time'>
+             {{orderDetail.give_food_time}}
+            </view>
+        </view>
+        <view class='cg-right success'>
+        已完成
+        </view>
+        <!--</navigator>-->
+    </view>
+     <!-- 已选餐 可编辑 -->
+ <view class='yes-order-can'  wx:if='{{showIndex === 3}}'>
+ 
+        <view class='cg-left'>
+           <image src='{{orderDetail.type_img}}' class='foods-type' />
+        </view>
+        <view class='cg-left detail-inner' >
+            <view class='type-name'>
+               {{orderDetail.type_name}}  
+            </view> 
+           <view class='address'>
+               {{orderDetail.address}} 
+            </view>
+            <view class='time'>
+               {{orderDetail.give_food_time}}
+            </view>
+        </view>
+        
+        <view class='cg-right edit-order'>
+            <view class='edit-botton' bindtap='editOrder'>编辑</view>
+            <view class='cacel-botton' bindtap='cancelOrder'>取消</view>
+        </view>
+    </view>
+    <!-- 等待配送 -->
+    <view class='loading-order'  wx:if='{{showIndex === 4}}'>
+ 
+        <view class='cg-left'>
+           <image src='{{orderDetail.type_img}}' class='foods-type-loading' />
+        </view>
+        <view class='cg-left detail-inner-loading' >
+            <view class='cant-edit-title'>
+              体测基数较大
+            </view> 
+            <view class='cant-edit'>
+               不可修改
+            </view>
+        </view>
+       
+        <view class='cg-right success-loading'>
+           等待配送
+        </view>
+    </view>
+    </view>
+</view>
+
+

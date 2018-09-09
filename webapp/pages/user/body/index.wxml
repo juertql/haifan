@@ -1,0 +1,97 @@
+
+<view class='content'>
+    <view class='top'>
+        <view wx:if="{{detail.id > 0  && detail.img_list != ''}}">
+          <view bindtap='editImage' class='img-show' data-id='{{detail.id}}'>
+            <image src="{{detail.img_list}}" mode="scaleToFill"></image>
+          </view>
+        </view>
+        <view wx:else >
+       <view  bindtap='editImage'  class='addImg'>
+         <view class='iconfont font-size-16 zx icon-zx cg-left'></view> <view class='font-size-16 img'>添加剪影</view>
+       </view>
+       <view class='message'>
+       开始记录身体减影吧，你会看到身体的变化！
+       </view>
+       </view>
+    </view>
+
+    <view class='br'></view>
+    <view class='main'>
+      <view class='main-header'>
+        <view class='header-title font-size-16 cg-left'>
+          身体数据
+        </view>
+        <view class='cg-left  font-size-16 header-info'>
+           {{detail.id > 0 ? '已为你展示最新数据' : '暂无数据'}}
+        </view>
+        <view wx:if='{{detail.id > 0}}' class='cg-right' data-id='{{detail.id}}' bindtap='editData'>
+        <view class='iconfont edit icon-edit'></view>
+        </view>
+        <view wx:else class='cg-right' bindtap='addData'>
+        <view class='iconfont edit icon-add'></view>
+        </view>
+        <view  class='cg-right'bindtap='moreData'>
+        <view class='iconfont edit icon-more'></view>
+        </view>
+      </view>
+      <!-- list -->
+      <view class='data-list'>
+        <view class='list-inner'>
+         <view class='iconfont font-size-16 zx icon-tz cg-left'></view>
+           <view class='list-left cg-left font-size-16'>
+             体重
+           </view>
+           <view class='list-right cg-right font-size-16'>
+              {{detail.weight}} kg  >
+            </view>
+        </view>
+        <view class='list-inner'>
+        <view class='iconfont font-size-16 zx icon-sg cg-left'></view>
+           <view class='list-left cg-left font-size-16'>
+             身高
+           </view>
+           <view class='list-right cg-right font-size-16'>
+              {{detail.height}} cm  >
+            </view>
+        </view>
+         <view class='list-inner'>
+        <view class='iconfont font-size-16 zx icon-xw cg-left'></view>
+           <view class='list-left cg-left font-size-16'>
+             体脂率
+           </view>
+           <view class='list-right cg-right font-size-16'>
+              {{detail.fat_rate}} %  >
+            </view>
+        </view>
+        <view class='list-inner'>
+        <view class='iconfont font-size-16 zx icon-xw cg-left'></view>
+           <view class='list-left cg-left font-size-16'>
+             胸围
+           </view>
+           <view class='list-right cg-right font-size-16'>
+              {{detail.bust}}  >
+            </view>
+        </view>
+        <view class='list-inner'>
+        <view class='iconfont font-size-16 zx icon-yw cg-left'></view>
+           <view class='list-left cg-left font-size-16'>
+            腰围
+           </view>
+           <view class='list-right cg-right font-size-16'>
+              {{detail.waist}}   >
+            </view>
+         </view>
+            <view class='list-inner'>
+            <view class='iconfont font-size-16 zx icon-tw cg-left'></view>
+           <view class='list-left cg-left font-size-16'>
+            臀围
+           </view>
+           <view class='list-right cg-right font-size-16'>
+              {{detail.hipline}}  >
+            </view>
+        </view>
+        <!-- list end -->
+      </view>
+    </view>
+</view>

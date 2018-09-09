@@ -1,0 +1,31 @@
+<view class="calendar">
+<!--banner-->
+  <view class="swiper">
+      <swiper indicator-dots="{{indicatorDots}}" vertical="{{vertical}}"
+              autoplay="{{autoplay}}" circular='true' interval="{{interval}}" duration="{{duration}}">
+          <block wx:for-items="{{goods_type}}" wx:key="item.id">
+          <!--<navigator url='/pages/goods/goodsdetail/index?id={{item.id}}'>-->
+              <swiper-item>
+                <block wx:if="{{item}}">
+                  <image class='image' src="{{item.img}}"  mode="scaleToFill"/>
+                </block>
+                <block wx:else>
+                  <image src="../../images/default_pic.png" mode="scaleToFill"></image>
+                </block>
+              </swiper-item>
+              <!--</navigator>-->
+          </block>
+      </swiper>
+  </view>
+  <!-- goods -->
+  <view class='goods-list'>
+    <block wx:for-items="{{activity}}" wx:key="item.id">
+      <navigator class='goods-inner' url='/pages/goods/goodsdetail/index?id={{item.id}}'>
+        <image class='goods-img' src="{{item.img}}"  mode="scaleToFill"/>
+        <view class='goods-text'>
+          查看详情
+        </view>
+     </navigator> 
+      </block>
+  </view>
+</view>

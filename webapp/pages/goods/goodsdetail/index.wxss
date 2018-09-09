@@ -1,0 +1,127 @@
+/* pages/shopShow/shopShow.wxss */
+.all_bc{
+  width:100%;
+  height:auto;
+  overflow: hidden;
+  background: white;
+}
+.imgtp{
+  width:100%;
+  height:440rpx;
+}
+.imgtp image{
+  width:100%;
+  height:100%;
+}
+.shopname{
+
+  height:auto;
+  overflow: hidden;
+  padding:25rpx 0 0 30rpx;
+  font-size:32rpx;
+  font-family: "微软雅黑";
+  float:left;
+}
+.shopmay{
+  height:auto;
+  overflow: hidden;
+  padding:25rpx 20rpx 0 30rpx;
+  color:#e93a34;
+  float: right;
+}
+.shopModel{
+  width:90%;
+  height:auto;
+  padding:20rpx 5% 0 5%;
+  overflow: hidden;
+}
+.textModel{
+  float: left;
+  font-size:30rpx;
+  color:#666;
+  font-family: "微软雅黑";
+}
+.manyModel{
+  float: right;
+  font-size:30rpx;
+  font-family: "微软雅黑";
+  color:#999;
+}
+.rightinfo{
+  width:35rpx;
+  height:35rpx;
+  float: right;
+  margin-left:30rpx;
+}
+.bc_hr{
+  width:100%;
+  height:20rpx;
+  background:#f8f8f8;
+  margin-top:35rpx;
+}
+.comment{
+  width:100%;
+  height:auto;
+  padding:0 35%;
+}
+.btn_cmt{
+  width:30%;
+  height:58rpx;
+  background:white;
+  border:2rpx solid #e93a34;
+  text-align: center;
+  line-height: 58rpx;
+  border-radius: 58rpx 58rpx  58rpx  58rpx ;
+  color:#e93a34;
+  margin-top:35rpx;
+}
+.dormshow{
+  width:100%;
+  height:auto;
+  padding:0 3%;
+ 
+}
+.showcsTA{
+  width:94%;
+  height:auto;
+  overflow: hidden;
+  margin-top:35rpx;
+}
+.bc_text{
+  width:65%;
+  height:238rpx;
+  float: left;
+}
+.bc_text image{
+  width:100%;
+  height:100%;
+}
+.TA_img{
+  width:35%;
+  height:238rpx;
+  float: left;
+}
+.service_go{
+  width:94%;
+  height:100rpx;
+  margin-top:10rpx;
+}
+.service_brand{
+  width:94%;
+  height:580rpx;
+}
+.service_family{
+  width:94%;
+  height:430rpx;
+}
+.padmany{
+  width:100%;
+  height:auto;
+  padding:0 5%;
+}
+swiper{
+  width:90%;
+  /*height: 16000rpx;*/
+  overflow: auto;
+  margin: 0 0 0 5%;
+}

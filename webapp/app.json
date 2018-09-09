@@ -1,0 +1,55 @@
+{
+    "pages": [
+        
+        
+        "pages/index/index",
+        "pages/user/top/index",
+        "pages/user/index",
+        "pages/goods/index",
+        "pages/addOrder/index",
+        "pages/login/index",   
+       "pages/user/body/index",
+        "pages/user/gift/index",
+        "pages/user/set/index",
+        "pages/order/edit/index",
+        "pages/user/body/add/index",
+        "pages/user/body/edit/index",
+        "pages/user/body/list/index",
+        "pages/user/body/detail/index",
+        "pages/goods/goodsdetail/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#051d35",
+        "navigationBarTitleText": "嗨范专业健身餐",
+        "navigationBarTextStyle": "white",
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": "60px"
+    },
+    "tabBar": {
+        "color": "#9a9a9a",
+        "selectedColor": "#051d35",
+        "backgroundColor": "#ffffff",
+        "position": "bottom",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "iconPath": "img/index.png",
+                "selectedIconPath": "img/index1.png",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/goods/index",
+                "iconPath": "img/goods.jpg",
+                "selectedIconPath": "img/goods1.jpg",
+                "text": "用餐管理"
+            },
+            {
+                "pagePath": "pages/user/index",
+                "iconPath": "img/user.jpg",
+                "selectedIconPath": "img/user1.jpg",
+                "text": "个人中心"
+            }
+        ]
+    }
+}

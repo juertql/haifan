@@ -1,0 +1,49 @@
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+
+
+    <view class="section">
+    <view class='cg-left title'>  
+        身高(cm):
+    </view>
+      <input type="text" name="height" value='{{detail.height}}' placeholder="身高" />
+    </view>
+    <view class="section">
+    <view class='cg-left title'>  
+        体重(kg):
+    </view>
+      <input type="text" name="weight" value='{{detail.weight}}' placeholder="体重" />
+    </view>
+    <view class="section">
+    <view class='cg-left title'>  
+        体脂率(%):
+    </view>
+      <input type="text" name="fat_rate" value='{{detail.fat_rate}}' placeholder="体脂率" />
+    </view>
+    <view class="section">
+    <view class='cg-left title'>  
+        胸围:
+    </view>
+      <input type="text" name="bust" value='{{detail.bust}}' placeholder="胸围" />
+    </view>
+    <view class="section">
+    <view class='cg-left title'>  
+        腰围:
+    </view>
+      <input type="text" name="waist" value='{{detail.waist}}' placeholder="腰围" />
+    </view>
+    <view class="section">
+    <view class='cg-left title'>  
+        臀围:
+    </view>
+      <input type="text" name="hipline" value='{{detail.hipline}}' placeholder="臀围" />
+    </view>
+
+    <view>
+      <label></label>
+    </view>
+    <view class="btn-area">
+      <button formType="submit">确定修改</button>
+    </view>
+  </form>
+</view>

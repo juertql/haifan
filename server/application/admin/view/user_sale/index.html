@@ -1,0 +1,113 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    {include file="form" /}
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+             <a href="javascript:;" onclick="addAllUser()" class="btn btn-primary radius mr-5"><i class="Hui-iconfont">&#xe632;</i> 添加会员</a>
+        </span>
+        <span class="r pt-5 pr-5">
+            共有数据 ：<strong>{$count ?? '0'}</strong> 条
+        </span>
+    </div>
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            {include file="th" /}
+            <th width="70">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+            {include file="td" /}
+            <td class="f-14">
+                <a title="添加" href="javascript:;" onclick="addUser('{$vo.id}')" class="label radius ml-5 label-primary">添加</a>
+                <a title="移除" href="javascript:;" onclick="deleteUser('{$vo.id}')" class="label label-warning radius">移除</a>
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="page-bootstrap">{$page ?? ''}</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+
+    //批量新增
+    var addAllUser = function(){
+        var sale_id = "{$sale_id ?? 0}"
+        var id = [];
+        $(":checked[name='id[]']").each(function () {
+            id.push($(this).val())
+        });
+        $.ajax({
+            url:"{:url('add')}",
+            type:"post",
+            data:{
+                sale_id:sale_id,
+                id: id.join(',')
+            },
+            //async: false,
+            success:function(re){
+                if(re.code == 200){
+                    layer.msg(re.msg);
+                    window.location.reload()
+                }
+                else{
+                    layer.msg(re.msg);
+                }
+            }
+        });
+    }
+    //新增
+    var addUser = function(id){
+        var sale_id = "{$sale_id ?? 0}"
+        var id = id;
+        $.ajax({
+            url:"{:url('add')}",
+            type:"post",
+            data:{
+                sale_id:sale_id,
+                id: id
+            },
+            //async: false,
+            success:function(re){
+                if(re.code == 200){
+                    layer.msg(re.msg);
+                    window.location.reload()
+                }
+                else{
+                    layer.msg(re.msg);
+                }
+            }
+        });
+    }
+    //移除
+    var deleteUser = function(id){
+        var id = id;
+        $.ajax({
+            url:"{:url('delete')}",
+            type:"post",
+            data:{
+                id: id
+            },
+            //async: false,
+            success:function(re){
+                if(re.code == 200){
+                    layer.msg(re.msg);
+                    window.location.reload()
+                }
+                else{
+                    layer.msg(re.msg);
+                }
+            }
+        });
+    }
+    $(function () {
+
+    })
+</script>
+{/block}
+

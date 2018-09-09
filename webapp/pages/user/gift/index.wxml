@@ -1,0 +1,19 @@
+<view class='content'>
+  <view class='list' wx:for='{{giftList}}'>
+    <view class='cg-left gift-left'>
+      <view class='gift-name'>
+        {{item.name}}
+      </view>
+      <view class='gift-time'>
+        {{item.create_time}}
+      </view>
+   </view>
+   <view class='cg-right gift-right'>
+   {{item.order_status == 2 ? '已领取' : '待发送'}}
+   </view>
+  </view>
+  <!-- 无数据 -->
+  <view class='no-list' wx:if='{{giftList.length < 1}}'>
+     还没有中奖记录！
+  </view>
+</view>

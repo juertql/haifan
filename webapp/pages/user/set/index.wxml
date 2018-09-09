@@ -1,0 +1,17 @@
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="section"> 
+      <input type="text" password='true' name="old_password" placeholder="旧密码" />
+    </view>
+    <view class="section">
+      <input type="text" password='true' name="password" placeholder="新密码" />
+    </view> 
+    <view class="section">
+      <input type="text" password='true' name="repassword" placeholder="再次输入新密码" />
+    </view>  
+      <label></label>
+    <view class="btn-area">
+      <button formType="submit">确定修改</button>
+    </view>
+  </form>
+</view>

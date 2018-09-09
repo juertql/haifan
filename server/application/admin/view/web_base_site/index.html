@@ -1,0 +1,188 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <div class="form form-horizontal">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>会员背景：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" value="{$img ?? ''}" class="input-text" id="upload" placeholder="请点击后面的上传按钮" datatype="*" nullmsg="请填写图片url" style="width: 70%">
+                <button type="button" class="btn btn-primary radius" onclick="layer_open('文件上传','{:\\think\\Url::build(\'Upload/index\', [\'id\' => \'upload\',\'bb\' => \'back\'])}')">上传</button>
+                <a onclick="$(this).attr('href', $('#upload').val())" type="button" class="btn btn-success radius" data-lightbox="preview">预览</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="form form-horizontal">
+       <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>不配送：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input  <?php if(stripos($day,'1') !== false){ echo 'checked';} ;?> name="date"   type="checkbox" value="1" class=""  placeholder="请点击后面的上传按钮">星期一
+                <input name="date"  <?php if(stripos($day,'2') !== false){ echo 'checked';} ;?>  type="checkbox" value="2" class=""  placeholder="请点击后面的上传按钮">星期二
+                <input name="date" <?php if(stripos($day,'3') !== false){ echo 'checked';} ;?>  type="checkbox" value="3" class=""  placeholder="请点击后面的上传按钮">星期三
+                <input name="date"  <?php if(stripos($day,'4') !== false){ echo 'checked';} ;?> type="checkbox" value="4" class="input-check"  placeholder="请点击后面的上传按钮">星期四
+                <input name="date" <?php if(stripos($day,'5') !== false){ echo 'checked';} ;?>   type="checkbox" value="5" class="input-check"  placeholder="请点击后面的上传按钮">星期五
+                <input name="date" <?php if(stripos($day,'6') !== false){ echo 'checked';} ;?>  type="checkbox" value="6" class="input-check"  placeholder="请点击后面的上传按钮">星期六
+                <input name="date" <?php if(stripos($day,'0') !== false){ echo 'checked';} ;?>  type="checkbox" value="0" class="input-check"  placeholder="请点击后面的上传按钮">星期天
+                <span onclick="toSend()"  type="button" class="btn btn-success radius" data-lightbox="preview">确定</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="form form-horizontal">
+        <label class="form-label col-xs-3 col-sm-3"><span class="c-red"></span>选择默认餐型：</label>
+        <div class="formControls col-xs-3 col-sm-3">
+            <div class="select-box">
+                <select id="goods_type" name="goods_type" class="select">
+                    {foreach name="$goods" item='v'}
+                    <option value="{$v.id}">{$v.name}</option>
+                    {/foreach}
+                </select>
+
+            </div>
+
+        </div>
+        <span onclick="toSendA()"  type="button" class="btn btn-success radius" data-lightbox="preview">确定</span>
+
+    </div>
+
+    <div class="form form-horizontal">
+        <label class="form-label col-xs-3 col-sm-3"><span class="c-red"></span>选择几天：</label>
+        <div class="formControls col-xs-3 col-sm-3">
+            <div class="select-box">
+                <select id="edit" name="edit" class="select">
+                    <option value="1">1天</option>
+                    <option value="2">2天</option>
+                    <option value="3">3天</option>
+                    <option value="4">4天</option>
+                </select>
+
+            </div>
+
+        </div>
+        <span onclick="toSendB()"  type="button" class="btn btn-success radius" data-lightbox="preview">确定</span>
+
+    </div>
+
+    <div class="form form-horizontal">
+        <label class="form-label col-xs-3 col-sm-3"><span class="c-red"></span>默认成都市：</label>
+        <div class="formControls col-xs-3 col-sm-3">
+            <div class="select-box">
+                <select id="area" name="area" class="select">
+                    <option value="2">默认</option>
+                    <option value="1">不默认</option>
+                </select>
+
+            </div>
+
+        </div>
+        <span onclick="toSendC()"  type="button" class="btn btn-success radius" data-lightbox="preview">确定</span>
+
+    </div>
+
+    <!--<div id="markdown" class="mt-20"></div>-->
+</div>
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__LIB__/lightbox2/css/lightbox.min.css">
+{/block}
+{block name="script"}
+<script src="__LIB__/lightbox2/js/lightbox.min.js"></script>
+<script>
+    $(function(){
+        $("#goods_type").find("[value='{$goods_index}']").prop('selected',true)
+        $("#edit").find("[value='{$edit}']").prop('selected',true)
+        $("#area").find("[value='{$area}']").prop('selected',true)
+    })
+    var toSend = function(){
+            var day = ''
+         $("input[name=date]").each(function(){
+            if($(this).prop('checked')){
+               day += $(this).val()
+            }
+        })
+
+
+       $.ajax({
+            url:"{:url('set')}",
+            type:"post",
+            data:{
+                day:day
+            },
+            success:function(re){
+                window.location.reload();
+            }
+        })
+
+    }
+    var toSendA = function(){
+            var day = $("#goods_type").val()
+        if(day != ''){
+
+       $.ajax({
+            url:"{:url('setGoods')}",
+            type:"post",
+            data:{
+                index:day
+            },
+            success:function(re){
+                window.location.reload();
+            }
+        })
+        }
+    }
+    var toSendB = function(){
+            var day = $("#edit").val()
+        if(day != ''){
+
+       $.ajax({
+            url:"{:url('setEdit')}",
+            type:"post",
+            data:{
+                index:day
+            },
+            success:function(re){
+                window.location.reload();
+            }
+        })
+        }
+    }
+    var toSendC = function(){
+            var day = $("#area").val()
+        if(day != ''){
+
+       $.ajax({
+            url:"{:url('setArea')}",
+            type:"post",
+            data:{
+                index:day
+            },
+            success:function(re){
+                window.location.reload();
+            }
+        })
+        }
+    }
+</script>
+{literal}
+<script type="text/plain" id="markdown_tpl">
+---
+图片上传使用的是 H5 + iframe 兼容模式上传，不依赖 flash 实现无刷新上传，同时支持 H5 的拖拽上传和上传进度监听，支持表单直接提交上传文件
+
+
+html 代码：
+```
+<div class="form form-horizontal">
+    <div class="row cl">
+        <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>图片：</label>
+        <div class="formControls col-xs-6 col-sm-6">
+            <input type="text" class="input-text" id="upload" placeholder="请点击后面的上传按钮" datatype="*" nullmsg="请填写图片url" style="width: 70%">
+            <button type="button" class="btn btn-primary radius" onclick="layer_open('文件上传','{:\\think\\Url::build(\'Upload/index\', [\'id\' => \'upload\'])}')">上传</button>
+            <a onclick="$(this).attr('href', $('#upload').val())" type="button" class="btn btn-success radius" data-lightbox="preview">预览</a>
+        </div>
+        <div class="col-xs-3 col-sm-3"></div>
+    </div>
+</div>
+```
+</script>
+{/literal}
+{/block}

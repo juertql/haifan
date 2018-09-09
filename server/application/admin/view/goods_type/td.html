@@ -1,0 +1,8 @@
+<td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+<td>{$vo.id}</td>
+<td>{$vo.name|high_light=$Request.param.name}</td>
+<td>{$vo.spec}</td>
+<td><img src="{$Think.config.__host_name__.$vo.img}" style="width: 150px;height: 100px"></td>
+<td>{$vo.price}</td>
+<td>{$vo.title}</td>
+<td>{$vo.status|get_status}</td>

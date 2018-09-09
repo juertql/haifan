@@ -1,0 +1,209 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <form id="form" class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+        <input type="text" class="input-text" style="width:250px" placeholder="订单号" name="sn" value="{$Request.param.sn}" >
+        <input type="text" class="input-text" style="width:250px" placeholder="会员名字" name="name" value="{$Request.param.name}" >
+        <input type="text" class="input-text" style="width:250px" placeholder="收货名字" name="address_name" value="{$Request.param.address_name}" >
+        <div class="select-box" style="width:250px">
+            <select name="order_status" class="select">
+                <option value="1">未配送</option>
+                <option value="2">已完成</option>
+                <option value="3">已取消</option>
+            </select>
+        </div>
+        <input type="text" class="input-text Wdate" style="width:140px" placeholder="开始时间" name="start_time" value="{$Request.param.start_time}" {literal} onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" {/literal} >-
+        -<input type="text" class="input-text Wdate" style="width:140px" placeholder="结束时间" name="end_time" value="{$Request.param.end_time}" {literal} onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" {/literal} >
+        <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+    </form>
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+            <!--href="{:url('exportOrder')}"-->
+             <a title="导出订单" onclick="exportOrder()"   class="btn btn-primary radius mr-5"><i class="Hui-iconfont">&#xe632;</i> 导出</a>
+            <a title="导出订单"  onclick="exportOrder1()"  class="btn btn-primary radius mr-5"><i class="Hui-iconfont">&#xe632;</i> 导出明日</a>
+             <a href="javascript:;" onclick="sendGift()" class="btn btn-primary radius mr-5"><i class="Hui-iconfont">&#xe632;</i> 赠送礼品</a>  <a href="javascript:;" onclick="cancelAll()" class="btn btn-danger radius mr-5"><i class="Hui-iconfont">&#xe632;</i> 批量取消</a>
+            <!--{tp:menu menu="delete" /}-->
+        </span>
+        <span class="r pt-5 pr-5">
+            共有数据 ：<strong>{$count ?? '0'}</strong> 条
+        </span>
+    </div>
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            <th width="25"><input type="checkbox"></th>
+            <th width="">id</th>
+            <th width="">会员信息</th>
+            <th width="">商品信息</th>
+            <th width="">收货信息</th>
+            <th width="">配送时间</th>
+            <th width="">说明</th>
+            <th width="">状态</th>
+            <th width="">其他</th>
+            <th width="">创建时间</th>
+            <th width="">修改时间</th>
+            <th width="70">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+            <td><input class="check" type="checkbox" name="id[]" value="{$vo.id}"></td>
+            <td>{$vo.id}</td>
+            <td>
+                <p>会员名:{$vo.user_id|get_user_name}</p>
+                <p>所属销售:{$vo.sale_id|get_sale}</p>
+            </td>
+            <td>
+                <p>商品:{$vo.goods_type_id|get_goods_type}</p>
+                <p>数量:1</p>
+            </td>
+            <td>
+                <p>收货人:{$vo.name}</p>
+                <p>电话:{$vo.mobile}</p>
+                <p>地址:{$vo.address}</p>
+
+            </td>
+            <td>
+                <p>日期:{$vo.year_months_day|get_ymd}</p>
+                <!--<p>时间:{$vo.give_food_time}</p>-->
+            </td>
+            <td>
+                {$vo.log ?? ''}
+            </td>
+            <td>{switch name='vo.order_status'}
+                {case value='1'}未配送{/case}
+                {case value='2'}已完成{/case}
+                {case value='3'}已取消{/case}
+                {/switch}
+            </td>
+            <td>
+                <p>备注：{$vo.user_id|get_remark}</p>
+                <p>其他说明： <input title="编辑，后点击保存" type="text" name="other[{$vo.id}]" value="{$vo.other}" style="width: 120px;"
+                                class="input-text text-c gift-input" data-id="{$vo.id}"></p>
+            </td>
+            <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+            <td>{$vo.update_time|date='Y-m-d H:i:s',###}</td>
+            <td class="f-14">
+                {if condition='$vo.order_status eq 1'}
+               <!-- <a title="赠送礼品" href="javascript:;" onclick="toGift('{$vo.id}')" class="label radius ml-5 label-primary">赠送礼品</a>-->
+                <a title="配送" href="javascript:;" onclick="toOrder('{$vo.id}',2)" class="label radius ml-5 label-primary">配送</a>
+                <a title="取消" href="javascript:;" onclick="toOrder('{$vo.id}',3)" class="label radius ml-5 label-primary">取消</a>
+                {/if}
+               <!-- {tp:menu menu='sdeleteforever' /}-->
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="page-bootstrap">{$page ?? ''}</div>
+</div>
+{/block}
+{block name="script"}
+<script src="__LIB__/lightbox2/js/lightbox.min.js"></script>
+<script type="text/javascript" src="__LIB__/My97DatePicker/WdatePicker.js"></script>
+    <script>
+    //批量取消
+    var cancelAll = function(){
+        var arr = []
+        $(".check").each(function(){
+            if($(this).prop('checked') == true){
+                var id = $(this).val()
+                arr.unshift(id)
+
+            }
+
+        })
+       if(arr.length == 0){
+           layer.msg('请选择要取消的订单');  return false;
+       }
+        var ids = arr.join(',')
+        layer.confirm('取消选中订单？', {
+            btn: ['确定','再想想'] //按钮
+        }, function(){
+            $.ajax({
+                url:"{:url('changStatusAll')}",
+                type:"post",
+                data:{
+                    ids: ids,
+
+                },
+                //async: false,
+                success:function(re){
+                    if(re.code == 200){
+                        layer.msg(re.msg);
+                        window.location.reload()
+                    }
+                    else{
+                        layer.msg(re.msg);
+                    }
+                }
+            });
+        }, function(){
+            layer.close()
+        });
+    }
+    //配送
+    var toOrder = function(id,status){
+        var id = id;
+        if(status == 3){
+            layer.confirm('取消订单？', {
+                btn: ['确定','再想想'] //按钮
+            }, function(){
+                $.ajax({
+                    url:"{:url('changStatus')}",
+                    type:"post",
+                    data:{
+                        id: id,
+                        status:status
+                    },
+                    //async: false,
+                    success:function(re){
+                        if(re.code == 200){
+                            layer.msg(re.msg);
+                            window.location.reload()
+                        }
+                        else{
+                            layer.msg(re.msg);
+                        }
+                    }
+                });
+            }, function(){
+                layer.close()
+            });
+        }
+        else{
+            $.ajax({
+                url:"{:url('changStatus')}",
+                type:"post",
+                data:{
+                    id: id,
+                    status:status
+                },
+                //async: false,
+                success:function(re){
+                    if(re.code == 200){
+                        layer.msg(re.msg);
+                        window.location.reload()
+                    }
+                    else{
+                        layer.msg(re.msg);
+                    }
+                }
+            });
+        }
+
+    }
+    var exportOrder = function(id,status){
+        window.location.href = "{:url('exportOrder1')}?"+$("#form").serialize()
+    }
+    var exportOrder1 = function(id,status){
+        window.location.href = "{:url('exportOrder')}?"+$("#form").serialize()
+    }
+
+    $(function () {
+        $("[name='order_status']").find("[value='{$Request.param.order_status}']").attr("selected", true);
+    })
+</script>
+{/block}
+
