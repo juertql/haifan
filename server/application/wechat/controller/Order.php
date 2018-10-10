@@ -219,12 +219,23 @@ class Order extends Controller
                 $order_update['order_status'] = 3;
                 $res = Db::name('order')->where('sn', $detail['sn'])->update($order_update);*/
 				
-				// 修改内容
-				$res = Db::name('order')->where('sn', $detail['sn'])->delete();
-				
-				$update['rest_num'] = ['exp', 'rest_num + 1'];
-                $update['order_num'] = ['exp', 'order_num - 1'];
-				Db::name('goods')->where($map)->update($update);
+		// 修改内容
+		$res = Db::name('order')->where('sn', $detail['sn'])->delete();
+
+		$order_num = Db::name('goods')->where($map)->value('order_num');
+
+                if($order_num <= 0)
+                {
+		    $update['rest_num'] = ['exp', 'rest_num + 0'];
+                    $update['order_num'] = ['exp', 'order_num - 0'];
+				    
+                }else 
+                {
+                    $update['rest_num'] = ['exp', 'rest_num + 1'];
+                    
+                    $update['order_num'] = ['exp', 'order_num - 1'];
+                }
+                Db::name('goods')->where($map)->update($update);
                 Db::commit();
             } catch (Exception $e) {
                 Db::rollback();                DebugLog("cancel order exception : ".$e->getMessage());
